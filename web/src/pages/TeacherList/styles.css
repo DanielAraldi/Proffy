@@ -35,8 +35,9 @@
     font-size: 1.6rem Archivo;
 }
 
-#search-teachers .input-block:focus-within::after { /* Estilizando apenas o input-block e não o input */
-    width: calc(100% - 3.2rem);
+#search-teachers .input-block::after { /* Estilizando apenas o input-block e não o input */
+    transition: 0.2s;
+    width: 0px;
     height: 2px;
     content: '';
     background: var(--color-primary-light);
@@ -44,6 +45,10 @@
     left: 1.6rem;
     right: 1.6rem;
     bottom: 0;
+}
+
+#search-teachers .input-block:focus-within::after { /* Faz o efeito de animação */
+    width: calc(100% - 3.2rem);
 }
 
 #page-teacher-list main {
