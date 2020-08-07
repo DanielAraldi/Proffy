@@ -8,37 +8,47 @@ import whatsappIcon from '../../assets/images/icons/whatsapp.png';
 
 import styles from './styles';
 
-function TeacherItem() {
+export interface Teacher {
+    id: number;
+    avatar: string;
+    bio: string;
+    cost: number;
+    name: string;
+    subject: string;
+    whatsapp: string;
+}
+
+interface TeacherItemProps {
+    teacher: Teacher;
+}
+
+const TeacherItem: React.FC<TeacherItemProps> = ({ teacher }) => {
     return (
         <View style={styles.container}>
             <View style={styles.profile}>
                 <Image
                     style={styles.avatar}
-                    source={{ uri: 'https://avatars0.githubusercontent.com/u/50931267?s=460&u=3110e194231c31ba4f7bcea3f2a7fd29d4e6afd7&v=4' }}
+                    source={{ uri: teacher.avatar }}
                 />
 
                 <View style={styles.profileInfo}>
-                    <Text style={styles.name}>Daniel Sansão Araldi</Text>
-                    <Text style={styles.subject}>Matemática</Text>
+                    <Text style={styles.name}>{teacher.name}</Text>
+                    <Text style={styles.subject}>{teacher.subject}</Text>
                 </View>
             </View>
 
-            <Text style={styles.bio}>
-                Um amante das artes matemáticas e de lontras.
-                {'\n'}{'\n'}
-                Apaixonado por tudo aquilo que envolva números e lontras, amo dar aulas e explodiar a sua cabeça com cálculos desconcertantes. 
-            </Text>
+            <Text style={styles.bio}>{teacher.bio}</Text>
 
             <View style={styles.footer}>
                 <Text style={styles.price}>
                     Preço/Hora {'   '}
-                    <Text style={styles.priceValue}>R$ 20,00</Text>
+                    <Text style={styles.priceValue}>R$ {teacher.cost}</Text>
                 </Text>
 
                 <View style={styles.buttonsContainer}>
                     <RectButton style={[styles.favoriteButton, styles.favorited]}>
                         {/*<Image source={heartOutlineIcon} />*/}
-                        <Image source={unFavoriteIcon}/>
+                        <Image source={unFavoriteIcon} />
                     </RectButton>
 
                     <RectButton style={styles.contactButton}>
