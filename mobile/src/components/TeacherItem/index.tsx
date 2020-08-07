@@ -7,6 +7,8 @@ import heartOutlineIcon from '../../assets/images/icons/heart-outline.png';
 import unFavoriteIcon from '../../assets/images/icons/unfavorite.png';
 import whatsappIcon from '../../assets/images/icons/whatsapp.png';
 
+import api from '../../services/api';
+
 import styles from './styles';
 
 export interface Teacher {
@@ -28,6 +30,10 @@ const TeacherItem: React.FC<TeacherItemProps> = ({ teacher, favorited }) => {
     const [isFavorited, setIsFavorited] = useState(favorited);
 
     function hundleLinkToWhatsapp() {
+        api.post('connections', {
+            user_id: teacher.id,
+        })
+
         Linking.openURL(`whatsapp://send?phone=${teacher.whatsapp}`)
     }
 
