@@ -20,6 +20,17 @@ const styles = StyleSheet.create({
         fontFamily: 'Poppins_400Regular',
     },
 
+    picker: {
+        height: 54,
+        backgroundColor: '#FFF',
+        borderRadius: 8,
+        justifyContent: 'center',
+        paddingHorizontal: 16,
+        marginTop: 4,
+        marginBottom: 16,
+        overflow: 'hidden',
+    },
+
     inputGroup: {
         flexDirection: 'row',
         justifyContent: 'space-between',
