@@ -28,7 +28,7 @@ O **Proffy** é uma aplicação Web e Mobile feita para ajudar na conexão entre
 
 Este projeto foi idealizado pensando no **6 de agosto**, onde se comemora o **Dia Nacional dos Profissionais da Educação**, criado como forma de homenagear os professores.
 
-Essa aplicação foi realizada durante a Next **Level Week #2**, projeto da [Rocketseat](https://rocketseat.com.br/).
+Essa aplicação foi realizada durante a **Next Level Week #2**, projeto da [Rocketseat](https://rocketseat.com.br/).
 
 ## :rocket: Tecnologias Utilizadas
 
