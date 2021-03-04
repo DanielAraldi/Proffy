@@ -63,7 +63,7 @@ Essa aplicação foi realizada durante a **Next Level Week #2**, projeto da [Roc
   # API
   $ cd server
   # Instalando as dependências do projeto.
-  $ yarn # ou npm install
+  $ yarn install # ou npm install
 
   # CONFIGURANDO O BANCO DE DADOS E A CRIAÇÃO DE TABELAS.
   $ yarn knex:migrate # ou npm run knex:migrate
@@ -73,14 +73,14 @@ Essa aplicação foi realizada durante a **Next Level Week #2**, projeto da [Roc
   # APLICAÇÃO WEB
   $ cd web
   # Instalando as dependências do projeto.
-  $ npm install # ou yarn 
+  $ npm install # ou yarn install
   # Inicie a aplicação web
   $ npm start # ou yarn start
 
   # APLICAÇÃO MOBILE
   $ cd mobile
   # Instalando as dependências do projeto.
-  $ yarn # ou npm install
+  $ yarn install # ou npm install
   # Inicie a aplicação mobile
   $ yarn start # ou npm start
 ```
