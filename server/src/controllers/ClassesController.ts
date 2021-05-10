@@ -1,107 +1,89 @@
-import { Request, Response } from 'express';
+import { Request, Response } from "express";
 
-import db from '../database/connection';
-import convertHourToMinutes from '../utils/convertHourToMinutes';
+import db from "../database/connection";
 
-interface ScheduleItem {
-    week_day: number;
-    from: string;
-    to: string;
-}
+import { ScheduleItem } from "../@types";
 
-export default class ClassesController {
-    // Listagem das aulas
-    async index(request: Request, response: Response) {
-        const filters = request.query;
+import { convertHourToMinutes } from "../utils/convertHourToMinutes";
 
-        // Diz pro typescript que é uma string
-        const subject = filters.subject as string;
-        const week_day = filters.week_day as string;
-        const time = filters.time as string;
+export class ClassesController {
+  async index(request: Request, response: Response) {
+    const filters = request.query;
 
-        if (!filters.week_day || !filters.subject || !filters.time) {
-            return response.status(400).json({
-                error: 'Missing filters to search classes'
-            })
-        }
+    const subject = filters.subject as string;
+    const week_day = filters.week_day as string;
+    const time = filters.time as string;
 
-        // Fazendo a conversão das horas para os minutos durante a pesquisa
-        const timeInMinutes = convertHourToMinutes(time);
-
-        const classes = await db('classes')
-            .whereExists(function() {
-                this.select('class_schedule.*')
-                .from('class_schedule')
-                .whereRaw('`class_schedule` . `class_id` = `classes` . `id`')
-                .whereRaw('`class_schedule` . `week_day` = ??', [Number(week_day)])
-                .whereRaw('`class_schedule` . `from` <= ??', [timeInMinutes])
-                .whereRaw('`class_schedule` . `to` > ??', [timeInMinutes])
-            })
-            .where('classes.subject', '=', subject)
-            .join('users', 'classes.user_id', '=', 'users.id')
-            .select(['classes.*', 'users.*']);
-
-        return response.json(classes);
+    if (!filters.week_day || !filters.subject || !filters.time) {
+      return response.status(400).json({
+        error: "Missing filters to search classes",
+      });
     }
 
-    // Criação da aulas
-    async create(request: Request, response: Response) {
-        const {
-            name,
-            avatar,
-            whatsapp,
-            bio,
-            subject,
-            cost,
-            schedule
-        } = request.body;
+    const timeInMinutes = convertHourToMinutes(time);
 
-        // Ele faz todas as operações do banco de dados ao mesmo tempo, se uma delas falhar, desfaz todas já foram feitas
-        const trx = await db.transaction();
+    const classes = await db("classes")
+      .whereExists(function () {
+        this.select("class_schedule.*")
+          .from("class_schedule")
+          .whereRaw("`class_schedule` . `class_id` = `classes` . `id`")
+          .whereRaw("`class_schedule` . `week_day` = ??", [Number(week_day)])
+          .whereRaw("`class_schedule` . `from` <= ??", [timeInMinutes])
+          .whereRaw("`class_schedule` . `to` > ??", [timeInMinutes]);
+      })
+      .where("classes.subject", "=", subject)
+      .join("users", "classes.user_id", "=", "users.id")
+      .select(["classes.*", "users.*"]);
 
-        try {
-            // Inserindo dados do usuário
-            const insertedUsersIds = await trx('users').insert({
-                name,
-                avatar,
-                whatsapp,
-                bio,
-            });
+    return response.status(200).json(classes);
+  }
 
-            const user_id = insertedUsersIds[0]; // Pega o primeiro item da linha, no caso o ID
+  async create(request: Request, response: Response) {
+    const { name, avatar, whatsapp, bio, subject, cost, schedule } =
+      request.body;
 
-            const insetedClassesIds = await trx('classes').insert({
-                subject,
-                cost,
-                user_id,
-            });
+    const trx = await db.transaction();
 
-            const class_id = insertedUsersIds[0];
+    try {
+      const insertedUsersIds = await trx("users").insert({
+        name,
+        avatar,
+        whatsapp,
+        bio,
+      });
 
-            // Mapeamento com o map dos dados do schedule
-            const classSchedule = schedule.map((scheduleItem: ScheduleItem) => {
-                return {
-                    class_id,
-                    week_day: scheduleItem.week_day,
-                    from: convertHourToMinutes(scheduleItem.from),
-                    to: convertHourToMinutes(scheduleItem.to),
-                };
-            })
+      const user_id = insertedUsersIds[0];
 
-            // Inserindo os dados do schedule no banco de dados
-            await trx('class_schedule').insert(classSchedule);
+      await trx("classes").insert({
+        subject,
+        cost,
+        user_id,
+      });
 
-            // Insere todas as informações ao mesmo tempo no banco de dados
-            await trx.commit();
+      const class_id = insertedUsersIds[0];
 
-            return response.status(201).send();
-        } catch (err) {
-            // Desfaz qualquer alteração no banco de dados
-            await trx.rollback();
-
-            return response.status(400).json({
-                error: 'Unexpected error while creating new class'
-            })
+      const classSchedule = schedule.map(
+        ({ from, to, week_day }: ScheduleItem) => {
+          return {
+            class_id,
+            week_day: week_day,
+            from: convertHourToMinutes(from),
+            to: convertHourToMinutes(to),
+          };
         }
+      );
+
+      await trx("class_schedule").insert(classSchedule);
+
+      await trx.commit();
+
+      return response.status(201).send();
+    } catch (err) {
+      await trx.rollback();
+
+      return response.status(500).json({
+        error: "Unexpected error while creating new class",
+      });
     }
+  }
 }

@@ -13,6 +13,4 @@ app.use(routes);
 
 const port = process.env.PORT || 3333;
 
-console.log(port);
-
 app.listen(port);
