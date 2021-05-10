@@ -1,15 +1,18 @@
-import express from 'express';
-import cors from 'cors';
-import routes from './routes';
+import express from "express";
+import cors from "cors";
+import { config } from "dotenv";
+import { routes } from "./routes";
+
+config({ path: __dirname + "/.env" });
 
 const app = express();
 
 app.use(cors());
-// Faz a conversão para que o express entenda o JSON
 app.use(express.json());
 app.use(routes);
 
-// Route params: Indica qual recurso eu quero atulizar ou deletar
-// Query params: Usado para paginação, filtros, ordenação...
+const port = process.env.PORT || 3333;
 
-app.listen(3333); // Porta
+console.log(port);
+
+app.listen(port);
