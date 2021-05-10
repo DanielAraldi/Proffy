@@ -6,6 +6,8 @@ import { ScheduleItem } from "../@types";
 
 import { convertHourToMinutes } from "../utils/convertHourToMinutes";
 
+import { ApiError } from "../errors";
+
 export class ClassesController {
   async index(request: Request, response: Response) {
     const filters = request.query;
@@ -14,11 +16,8 @@ export class ClassesController {
     const week_day = filters.week_day as string;
     const time = filters.time as string;
 
-    if (!filters.week_day || !filters.subject || !filters.time) {
-      return response.status(400).json({
-        error: "Missing filters to search classes",
-      });
-    }
+    if (!filters.week_day || !filters.subject || !filters.time)
+      throw new ApiError("Missing filters to search classes", 400);
 
     const timeInMinutes = convertHourToMinutes(time);
 
@@ -81,9 +80,7 @@ export class ClassesController {
     } catch (err) {
       await trx.rollback();
 
-      return response.status(500).json({
-        error: "Unexpected error while creating new class",
-      });
+      throw new ApiError("Unexpected error while creating new class", 500);
     }
   }
 }
