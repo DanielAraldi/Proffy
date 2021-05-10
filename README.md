@@ -32,15 +32,14 @@ Essa aplicação foi realizada durante a **Next Level Week #2**, projeto da [Roc
 
 ## :rocket: Tecnologias Utilizadas
 
--  [Axios](https://github.com/axios/axios)
--  [Express](https://expressjs.com/)
--  [Expo](https://expo.io/)
--  [Knex](http://knexjs.org/)
--  [Node.js](https://nodejs.org/en/)
--  [ReactJS](https://reactjs.org/)
--  [React Native](http://facebook.github.io/react-native/)
--  [Typescript](https://www.typescriptlang.org/)
--  [SQLite](https://www.sqlite.org/)
+- [Express](https://expressjs.com/)
+- [Expo](https://expo.io/)
+- [Knex](http://knexjs.org/)
+- [Node.js](https://nodejs.org/en/)
+- [ReactJS](https://reactjs.org/)
+- [React Native](http://facebook.github.io/react-native/)
+- [TypeScript](https://www.typescriptlang.org/)
+- [SQLite](https://www.sqlite.org/)
 
 ## :boom: Como Executar
 
@@ -68,21 +67,21 @@ Essa aplicação foi realizada durante a **Next Level Week #2**, projeto da [Roc
   # CONFIGURANDO O BANCO DE DADOS E A CRIAÇÃO DE TABELAS.
   $ yarn knex:migrate # ou npm run knex:migrate
   # Inicie a API
-  $ yarn start # ou npm start
+  $ yarn start # ou npm run start
 
   # APLICAÇÃO WEB
   $ cd web
   # Instalando as dependências do projeto.
   $ npm install # ou yarn install
   # Inicie a aplicação web
-  $ npm start # ou yarn start
+  $ npm run start # ou yarn start
 
   # APLICAÇÃO MOBILE
   $ cd mobile
   # Instalando as dependências do projeto.
   $ yarn install # ou npm install
   # Inicie a aplicação mobile
-  $ yarn start # ou npm start
+  $ yarn start # ou npm run start
 ```
 
 ## :memo: Licença
@@ -90,4 +89,5 @@ Essa aplicação foi realizada durante a **Next Level Week #2**, projeto da [Roc
 Esse projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para mais detalhes.
 
 ---
+
 <sup>Projeto desenvolvido com a tutoria de [Diego Fernandes](https://github.com/diego3g), da [Rocketseat](https://rocketseat.com.br/).</sup>
