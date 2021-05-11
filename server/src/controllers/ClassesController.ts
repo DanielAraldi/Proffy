@@ -1,12 +1,14 @@
 import { Request, Response } from "express";
 
-import db from "../database/connection";
+import { db } from "../database/connection";
+
+import { ApiError } from "../errors";
+
+import { ClassesCreateAdapter } from "../validators";
 
 import { ScheduleItem } from "../@types";
 
 import { convertHourToMinutes } from "../utils/convertHourToMinutes";
-
-import { ApiError } from "../errors";
 
 export class ClassesController {
   async index(request: Request, response: Response) {
@@ -38,6 +40,10 @@ export class ClassesController {
   }
 
   async create(request: Request, response: Response) {
+    const classesCreateAdapter = new ClassesCreateAdapter();
+
+    await classesCreateAdapter.isValidRequest(request);
+
     const { name, avatar, whatsapp, bio, subject, cost, schedule } =
       request.body;
 
