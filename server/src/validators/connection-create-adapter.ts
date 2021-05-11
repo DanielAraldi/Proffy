@@ -18,6 +18,7 @@ export class ConnectionCreateAdapter {
     try {
       await schema.validate(request.body, { abortEarly: false });
     } catch (error) {
+      console.error(error);
       throw new ApiError("Some data are invalid!", 400);
     }
   }
