@@ -9,4 +9,4 @@ const db = knex({
   useNullAsDefault: true, // Se o valor não ser informado é preechido com Null no banco de dados
 });
 
-export default db;
+export { db };
