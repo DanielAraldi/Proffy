@@ -32,6 +32,7 @@ Essa aplicação foi realizada durante a **Next Level Week #2**, projeto da [Roc
 
 ## :rocket: Tecnologias Utilizadas
 
+- [Axios](https://axios-http.com/)
 - [Express](https://expressjs.com/)
 - [Expo](https://expo.io/)
 - [Knex](http://knexjs.org/)
