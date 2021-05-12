@@ -6,10 +6,7 @@ import backIcon from "../../assets/images/icons/back.svg";
 
 import "./styles.css";
 
-interface PageHeaderProps {
-  title: string;
-  description?: string;
-}
+import { PageHeaderProps } from "../../@types";
 
 const PageHeader: React.FC<PageHeaderProps> = (props) => {
   return (

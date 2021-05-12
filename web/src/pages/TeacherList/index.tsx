@@ -1,11 +1,13 @@
-import React, { useState, FormEvent } from "react";
+import { useState, FormEvent } from "react";
 
 import PageHeader from "../../components/PageHeader";
-import TeacherItem, { Teacher } from "../../components/TeacherItem";
+import TeacherItem from "../../components/TeacherItem";
 import Input from "../../components/input";
 import Select from "../../components/Select";
 
 import { api } from "../../services/api";
+
+import { Teacher } from "../../@types";
 
 import "./styles.css";
 
