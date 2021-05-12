@@ -19,4 +19,8 @@ export class ClassesRepository {
       .join("users", "classes.user_id", "=", "users.id")
       .select(["classes.*", "users.*"]);
   }
+
+  async findAll() {
+    return await db.select("*").from("classes");
+  }
 }

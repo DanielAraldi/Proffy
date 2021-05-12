@@ -85,4 +85,12 @@ export class ClassesController {
       throw new ApiError("Unexpected error while creating new class", 500);
     }
   }
+
+  async show(request: Request, response: Response) {
+    const classesRepository = new ClassesRepository();
+
+    const classes = await classesRepository.findAll();
+
+    return response.status(200).json(classes);
+  }
 }
