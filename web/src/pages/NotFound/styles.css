@@ -1,0 +1,30 @@
+#page-message {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--color-text-in-primary);
+  background: var(--color-primary);
+}
+
+.message-container {
+  text-align: center;
+  margin-bottom: 3.2rem;
+  line-height: 4.6rem;
+  margin-top: 0.8rem;
+}
+
+.message-container h2 {
+  font-weight: 500;
+  font-size: 3rem;
+}
+
+.message-container h2 {
+  font-weight: 500;
+  font-size: 2.4rem;
+}
+
+.hero-image {
+  width: 100%;
+}
