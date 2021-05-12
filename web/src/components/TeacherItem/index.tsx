@@ -9,11 +9,10 @@ import "./styles.css";
 import { TeacherItemProps } from "../../@types";
 
 const TeacherItem: React.FC<TeacherItemProps> = ({ teacher }) => {
-  function createNewConnection() {
+  const createNewConnection = () =>
     api.post("connections", {
       user_id: teacher.id,
     });
-  }
 
   return (
     <article className="teacher-item">

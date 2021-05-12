@@ -18,7 +18,7 @@ function TeacherList() {
   const [week_day, setWeekDay] = useState("");
   const [time, setTime] = useState("");
 
-  async function searchTeachers(e: FormEvent) {
+  const searchTeachers = async (e: FormEvent) => {
     e.preventDefault();
 
     const response = await api.get("classes", {
@@ -30,7 +30,7 @@ function TeacherList() {
     });
 
     setTeachers(response.data);
-  }
+  };
 
   return (
     <div id="page-teacher-list" className="container">

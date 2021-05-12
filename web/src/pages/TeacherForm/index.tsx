@@ -1,4 +1,4 @@
-import React, { useState, FormEvent } from "react";
+import { useState, FormEvent } from "react";
 import { useHistory } from "react-router-dom";
 
 import PageHeader from "../../components/PageHeader";
@@ -27,15 +27,14 @@ function TeacherForm() {
     { week_day: 0, from: "", to: "" },
   ]);
 
-  function addNewScheduleItem() {
+  const addNewScheduleItem = () =>
     SetScheduleItems([...scheduleItems, { week_day: 0, from: "", to: "" }]);
-  }
 
-  function setScheduleItemValue(
+  const setScheduleItemValue = (
     position: number,
     field: string,
     value: string
-  ) {
+  ) => {
     const updateScheduleItems = scheduleItems.map((scheduleItem, index) => {
       if (index === position) {
         return { ...scheduleItem, [field]: value };
@@ -45,9 +44,9 @@ function TeacherForm() {
     });
 
     SetScheduleItems(updateScheduleItems);
-  }
+  };
 
-  function handleCreateClass(e: FormEvent) {
+  const handleCreateClass = (e: FormEvent) => {
     e.preventDefault();
 
     api
@@ -68,7 +67,7 @@ function TeacherForm() {
       .catch(() => {
         alert("Erro no cadastro!");
       });
-  }
+  };
 
   return (
     <div id="page-teacher-form" className="container">
