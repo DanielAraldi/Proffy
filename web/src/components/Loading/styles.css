@@ -1,0 +1,5 @@
+.loading-container {
+  display: flex;
+  justify-content: center;
+  padding-top: 4rem;
+}
