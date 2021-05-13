@@ -1,8 +1,9 @@
 import { useState, FormEvent, useEffect } from "react";
 
+import { Loading } from "../../components/Loading";
 import PageHeader from "../../components/PageHeader";
 import TeacherItem from "../../components/TeacherItem";
-import Input from "../../components/input";
+import Input from "../../components/Input";
 import Select from "../../components/Select";
 
 import { api } from "../../services/api";
@@ -12,8 +13,10 @@ import { Classes, Teacher } from "../../@types";
 import "./styles.css";
 
 function TeacherList() {
+  const [isConnection, setIsConnection] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
   const [optionSubjects, setOptionSubjects] = useState([
-    { value: "Carregando opções", label: "Carregando opções" },
+    { value: "Carregando opções...", label: "Carregando opções..." },
   ]);
   const [teachers, setTeachers] = useState([]);
 
@@ -21,39 +24,48 @@ function TeacherList() {
   const [week_day, setWeekDay] = useState("");
   const [time, setTime] = useState("");
 
-  const searchTeachers = async (e: FormEvent) => {
+  const searchTeachers = (e: FormEvent) => {
     e.preventDefault();
 
-    const response = await api.get("classes", {
-      params: {
-        subject,
-        week_day,
-        time,
-      },
-    });
-
-    setTeachers(response.data);
+    api
+      .get("classes", {
+        params: {
+          subject,
+          week_day,
+          time,
+        },
+      })
+      .then((response) => {
+        setTeachers(response.data);
+      })
+      .catch(() => setIsConnection(false))
+      .finally(() => setIsLoading(false));
   };
 
   useEffect(() => {
-    api.get("classes/all").then((response) => {
-      const data = response.data as Classes[];
+    api
+      .get("classes/all")
+      .then((response) => {
+        const data = response.data as Classes[];
 
-      const subjects = data.map(({ subject }) => subject);
+        const subjects = data.map(({ subject }) => subject);
 
-      // eslint-disable-next-line array-callback-return
-      const optionsNoRepeat = subjects.filter((subject, index, array) => {
-        if (array.indexOf(subject) === index) {
-          return subject;
-        }
-      });
+        // eslint-disable-next-line array-callback-return
+        const optionsNoRepeat = subjects.filter((subject, index, array) => {
+          if (array.indexOf(subject) === index) {
+            return subject;
+          }
+        });
 
-      const options = optionsNoRepeat.map((subject) => {
-        return { value: subject, label: subject };
-      });
+        const options = optionsNoRepeat.map((subject) => {
+          return { value: subject, label: subject };
+        });
 
-      return setOptionSubjects(options);
-    });
+        return setOptionSubjects(options);
+      })
+      .catch(() =>
+        setOptionSubjects([{ value: "Sem dados", label: "Sem dados" }])
+      );
   }, []);
 
   return (
@@ -96,19 +108,27 @@ function TeacherList() {
             }}
           />
 
-          <button type="submit">Buscar</button>
+          <button type="submit" onClick={() => setIsLoading(true)}>
+            Buscar
+          </button>
         </form>
       </PageHeader>
 
       <main>
-        {teachers.length < 1 ? (
-          <h1 className="warning">
-            Faça uma pesquisa válida para obter os resultados!
-          </h1>
+        {isConnection ? (
+          isLoading ? (
+            <Loading />
+          ) : teachers.length < 1 ? (
+            <h1 className="warning">
+              Faça uma pesquisa válida para obter os resultados!
+            </h1>
+          ) : (
+            teachers.map((teacher: Teacher) => {
+              return <TeacherItem key={teacher.id} teacher={teacher} />;
+            })
+          )
         ) : (
-          teachers.map((teacher: Teacher) => {
-            return <TeacherItem key={teacher.id} teacher={teacher} />;
-          })
+          <h1 className="warning">Erro ao obter os dados!</h1>
         )}
       </main>
     </div>
