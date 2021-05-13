@@ -101,9 +101,15 @@ function TeacherList() {
       </PageHeader>
 
       <main>
-        {teachers.map((teacher: Teacher) => {
-          return <TeacherItem key={teacher.id} teacher={teacher} />;
-        })}
+        {teachers.length < 1 ? (
+          <h1 className="warning">
+            Faça uma pesquisa válida para obter os resultados!
+          </h1>
+        ) : (
+          teachers.map((teacher: Teacher) => {
+            return <TeacherItem key={teacher.id} teacher={teacher} />;
+          })
+        )}
       </main>
     </div>
   );
