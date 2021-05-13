@@ -50,7 +50,10 @@ function Landing() {
         </div>
 
         <span className="total-connections">
-          Total de {totalConnections} conexões realizadas{" "}
+          Total de{" "}
+          {totalConnections === 1
+            ? `${totalConnections} conexão realizada!`
+            : `${totalConnections} conexões realizadas!`}{" "}
           <img src={purpleHeartIcon} alt="Coração roxo" />
         </span>
       </div>
