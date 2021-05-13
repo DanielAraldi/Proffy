@@ -2,8 +2,8 @@ import { useState, FormEvent } from "react";
 import { useHistory } from "react-router-dom";
 
 import PageHeader from "../../components/PageHeader";
-import Input from "../../components/input";
-import Textarea from "../../components/textarea";
+import Input from "../../components/Input";
+import Textarea from "../../components/Textarea";
 import Select from "../../components/Select";
 
 import { api } from "../../services/api";
