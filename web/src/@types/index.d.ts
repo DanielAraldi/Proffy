@@ -16,3 +16,10 @@ export interface Teacher {
 export interface TeacherItemProps {
   teacher: Teacher;
 }
+
+export interface Classes {
+  id: number;
+  subject: string;
+  cost: number;
+  user_id: number;
+}

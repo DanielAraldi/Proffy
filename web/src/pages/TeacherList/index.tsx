@@ -1,4 +1,4 @@
-import { useState, FormEvent } from "react";
+import { useState, FormEvent, useEffect } from "react";
 
 import PageHeader from "../../components/PageHeader";
 import TeacherItem from "../../components/TeacherItem";
@@ -7,11 +7,14 @@ import Select from "../../components/Select";
 
 import { api } from "../../services/api";
 
-import { Teacher } from "../../@types";
+import { Classes, Teacher } from "../../@types";
 
 import "./styles.css";
 
 function TeacherList() {
+  const [optionSubjects, setOptionSubjects] = useState([
+    { value: "Carregando opções", label: "Carregando opções" },
+  ]);
   const [teachers, setTeachers] = useState([]);
 
   const [subject, setSubject] = useState("");
@@ -32,6 +35,27 @@ function TeacherList() {
     setTeachers(response.data);
   };
 
+  useEffect(() => {
+    api.get("classes/all").then((response) => {
+      const data = response.data as Classes[];
+
+      const subjects = data.map(({ subject }) => subject);
+
+      // eslint-disable-next-line array-callback-return
+      const optionsNoRepeat = subjects.filter((subject, index, array) => {
+        if (array.indexOf(subject) === index) {
+          return subject;
+        }
+      });
+
+      const options = optionsNoRepeat.map((subject) => {
+        return { value: subject, label: subject };
+      });
+
+      return setOptionSubjects(options);
+    });
+  }, []);
+
   return (
     <div id="page-teacher-list" className="container">
       <PageHeader title="Estes são os proffys disponíveis.">
@@ -43,22 +67,7 @@ function TeacherList() {
             onChange={(e) => {
               setSubject(e.target.value);
             }}
-            options={[
-              { value: "Artes", label: "Artes" },
-              { value: "Biologia", label: "Biologia" },
-              { value: "Ciências", label: "Ciências" },
-              { value: "Educação física", label: "Educação física" },
-              { value: "Filosofia", label: "Filosofia" },
-              { value: "Física", label: "Física" },
-              { value: "Geografia", label: "Geografia" },
-              { value: "História", label: "História" },
-              { value: "Inglês", label: "Inglês" },
-              { value: "Matemática", label: "Matemática" },
-              { value: "Português", label: "Português" },
-              { value: "Química", label: "Química" },
-              { value: "Religião", label: "Religião" },
-              { value: "Sociologia", label: "Sociologia" },
-            ]}
+            options={optionSubjects}
           />
           <Select
             name="week_day"
