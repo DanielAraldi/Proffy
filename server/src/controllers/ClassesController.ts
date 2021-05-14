@@ -67,7 +67,7 @@ export class ClassesController {
         ({ from, to, week_day }: ScheduleItem) => {
           return {
             class_id,
-            week_day: week_day,
+            week_day: Number(week_day),
             from: convertHourToMinutes(from),
             to: convertHourToMinutes(to),
           };
