@@ -87,6 +87,7 @@ function TeacherForm() {
               onChange={(e) => {
                 setName(e.target.value);
               }}
+              required
             />
             <Input
               name="avatar"
@@ -95,6 +96,7 @@ function TeacherForm() {
               onChange={(e) => {
                 setAvatar(e.target.value);
               }}
+              required
             />
             <Input
               name="whatsapp"
@@ -103,6 +105,7 @@ function TeacherForm() {
               onChange={(e) => {
                 setWhatsapp(e.target.value);
               }}
+              required
             />
             <Textarea
               name="bio"
@@ -111,6 +114,7 @@ function TeacherForm() {
               onChange={(e) => {
                 setBio(e.target.value);
               }}
+              required
             />
           </fieldset>
 
@@ -139,6 +143,7 @@ function TeacherForm() {
                 { value: "Religião", label: "Religião" },
                 { value: "Sociologia", label: "Sociologia" },
               ]}
+              required
             />
             <Input
               name="cost"
@@ -147,6 +152,7 @@ function TeacherForm() {
               onChange={(e) => {
                 setCost(e.target.value);
               }}
+              required
             />
           </fieldset>
 
@@ -176,6 +182,7 @@ function TeacherForm() {
                       { value: "5", label: "Sexta-feira" },
                       { value: "6", label: "Sábado" },
                     ]}
+                    required
                   />
                   <Input
                     name="from"
@@ -185,6 +192,7 @@ function TeacherForm() {
                     onChange={(e) =>
                       setScheduleItemValue(index, "from", e.target.value)
                     }
+                    required
                   />
                   <Input
                     name="to"
@@ -194,6 +202,7 @@ function TeacherForm() {
                     onChange={(e) =>
                       setScheduleItemValue(index, "to", e.target.value)
                     }
+                    required
                   />
                 </div>
               );

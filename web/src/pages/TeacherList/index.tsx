@@ -24,7 +24,10 @@ function TeacherList() {
   const [week_day, setWeekDay] = useState("");
   const [time, setTime] = useState("");
 
+  const makeLoading = () => setIsLoading(true);
+
   const searchTeachers = (e: FormEvent) => {
+    makeLoading();
     e.preventDefault();
 
     api
@@ -80,6 +83,7 @@ function TeacherList() {
               setSubject(e.target.value);
             }}
             options={optionSubjects}
+            required
           />
           <Select
             name="week_day"
@@ -97,6 +101,7 @@ function TeacherList() {
               { value: "5", label: "Sexta-feira" },
               { value: "6", label: "Sábado" },
             ]}
+            required
           />
           <Input
             type="time"
@@ -106,11 +111,10 @@ function TeacherList() {
             onChange={(e) => {
               setTime(e.target.value);
             }}
+            required
           />
 
-          <button type="submit" onClick={() => setIsLoading(true)}>
-            Buscar
-          </button>
+          <button type="submit">Buscar</button>
         </form>
       </PageHeader>
 
