@@ -49,11 +49,10 @@ export class ClassesCreateAdapter {
           yup
             .object({
               week_day: yup
-                .number()
-                .integer()
-                .positive()
+                .string()
+                .trim()
                 .strict(true)
-                .typeError("Value isn't number")
+                .typeError("Value isn't string")
                 .required("Required the week day!"),
               from: yup
                 .string()
