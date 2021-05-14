@@ -24,11 +24,14 @@ function TeacherForm() {
   const [cost, setCost] = useState("");
 
   const [scheduleItems, SetScheduleItems] = useState([
-    { week_day: 0, from: "", to: "" },
+    { week_day: String(0), from: "", to: "" },
   ]);
 
   const addNewScheduleItem = () =>
-    SetScheduleItems([...scheduleItems, { week_day: 0, from: "", to: "" }]);
+    SetScheduleItems([
+      ...scheduleItems,
+      { week_day: String(0), from: "", to: "" },
+    ]);
 
   const setScheduleItemValue = (
     position: number,
