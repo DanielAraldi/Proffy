@@ -120,29 +120,13 @@ function TeacherForm() {
 
           <fieldset>
             <legend>Sobre a aula</legend>
-            <Select
+            <Input
               name="subject"
               label="Matéria"
               value={subject}
               onChange={(e) => {
                 setSubject(e.target.value);
               }}
-              options={[
-                { value: "Artes", label: "Artes" },
-                { value: "Biologia", label: "Biologia" },
-                { value: "Ciências", label: "Ciências" },
-                { value: "Educação física", label: "Educação física" },
-                { value: "Filosofia", label: "Filosofia" },
-                { value: "Física", label: "Física" },
-                { value: "Geografia", label: "Geografia" },
-                { value: "História", label: "História" },
-                { value: "Inglês", label: "Inglês" },
-                { value: "Matemática", label: "Matemática" },
-                { value: "Português", label: "Português" },
-                { value: "Química", label: "Química" },
-                { value: "Religião", label: "Religião" },
-                { value: "Sociologia", label: "Sociologia" },
-              ]}
               required
             />
             <Input
