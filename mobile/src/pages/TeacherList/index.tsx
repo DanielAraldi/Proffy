@@ -1,28 +1,56 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { View, ScrollView, Text, TextInput, Picker } from "react-native";
 import { BorderlessButton, RectButton } from "react-native-gesture-handler";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 import { Feather } from "@expo/vector-icons";
 
+import Loading from "../../components/Loading";
 import PageHeader from "../../components/PageHeader";
 import TeacherItem, { Teacher } from "../../components/TeacherItem";
 
 import { api } from "../../services/api";
 
 import styles from "./styles";
-import Loading from "../../components/Loading";
+
+import { Classes } from "../../@types";
 
 function TeacherList() {
   const [teachers, setTeachers] = useState([]);
   const [isConnection, setIsConnection] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
+  const [optionSubjects, setOptionSubjects] = useState([
+    { label: "Carregando opções...", value: "" },
+  ]);
   const [favorites, setFavorites] = useState<number[]>([]);
   const [isFiltersVisible, SetIsFiltersVisible] = useState(false);
 
   const [subject, setSubject] = useState("");
   const [week_day, setWeekDay] = useState("");
   const [time, setTime] = useState("");
+
+  useEffect(() => {
+    api
+      .get("classes/all")
+      .then((response) => {
+        const data = response.data as Classes[];
+
+        const subjects = data.map(({ subject }) => subject);
+
+        const optionsNoRepeat = subjects.filter((subject, index, array) => {
+          if (array.indexOf(subject) === index) {
+            return subject;
+          }
+        });
+
+        const options = optionsNoRepeat.map((subject) => {
+          return { label: subject, value: subject };
+        });
+
+        return setOptionSubjects(options);
+      })
+      .catch(() => setOptionSubjects([{ label: "Sem dados", value: "" }]));
+  }, []);
 
   function loadFavorites() {
     AsyncStorage.getItem("favorites").then((response) => {
@@ -85,20 +113,9 @@ function TeacherList() {
               onValueChange={(itemValue, itemIndex) => setSubject(itemValue)}
             >
               <Picker.Item label="Qual a matéria?" value="" />
-              <Picker.Item label="Artes" value="Artes" />
-              <Picker.Item label="Biologia" value="Biologia" />
-              <Picker.Item label="Ciências" value="Ciências" />
-              <Picker.Item label="Educação física" value="Educação física" />
-              <Picker.Item label="Filosofia" value="Filosofia" />
-              <Picker.Item label="Física" value="Física" />
-              <Picker.Item label="Geografia" value="Geografia" />
-              <Picker.Item label="História" value="História" />
-              <Picker.Item label="Inglês" value="Inglês" />
-              <Picker.Item label="Matemática" value="Matemática" />
-              <Picker.Item label="Português" value="Português" />
-              <Picker.Item label="Química" value="Química" />
-              <Picker.Item label="Religião" value="Religião" />
-              <Picker.Item label="Sociologia" value="Sociologia" />
+              {optionSubjects.map(({ label, value }) => (
+                <Picker.Item label={label} value={value} />
+              ))}
             </Picker>
 
             <View style={styles.inputGroup}>
