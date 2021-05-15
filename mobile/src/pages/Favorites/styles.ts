@@ -9,6 +9,16 @@ const styles = StyleSheet.create({
   teacherList: {
     marginTop: -40,
   },
+
+  messageContainer: {
+    alignItems: "center",
+    marginTop: 150,
+  },
+
+  message: {
+    color: "#8257E5",
+    fontFamily: "Archivo_700Bold",
+  },
 });
 
 export default styles;
