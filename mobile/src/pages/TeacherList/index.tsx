@@ -11,10 +11,12 @@ import TeacherItem, { Teacher } from "../../components/TeacherItem";
 import { api } from "../../services/api";
 
 import styles from "./styles";
+import Loading from "../../components/Loading";
 
 function TeacherList() {
   const [teachers, setTeachers] = useState([]);
   const [isConnection, setIsConnection] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
   const [favorites, setFavorites] = useState<number[]>([]);
   const [isFiltersVisible, SetIsFiltersVisible] = useState(false);
 
@@ -37,8 +39,11 @@ function TeacherList() {
     });
   }
 
+  const makeLoading = () => setIsLoading(true);
+
   function hundleFilterSubmit() {
     loadFavorites();
+    makeLoading();
 
     api
       .get("classes", {
@@ -52,7 +57,8 @@ function TeacherList() {
         SetIsFiltersVisible(false);
         setTeachers(response.data);
       })
-      .catch(() => setIsConnection(false));
+      .catch(() => setIsConnection(false))
+      .finally(() => setIsLoading(false));
   }
 
   function hundleToggleFiltersVisible() {
@@ -150,6 +156,8 @@ function TeacherList() {
           <View style={styles.warningContainer}>
             <Text style={styles.warning}>Erro ao obter os dados!!</Text>
           </View>
+        ) : isLoading ? (
+          <Loading />
         ) : teachers.length === 0 ? (
           <View style={styles.warningContainer}>
             <Text style={styles.warning}>
