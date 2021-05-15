@@ -64,6 +64,16 @@ const styles = StyleSheet.create({
     fontFamily: "Archivo_700Bold",
     fontSize: 16,
   },
+
+  warningContainer: {
+    alignItems: "center",
+    marginTop: 150,
+  },
+
+  warning: {
+    color: "#8257E5",
+    fontFamily: "Archivo_700Bold",
+  },
 });
 
 export default styles;

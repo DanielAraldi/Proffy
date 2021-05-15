@@ -14,6 +14,7 @@ import styles from "./styles";
 
 function TeacherList() {
   const [teachers, setTeachers] = useState([]);
+  const [isConnection, setIsConnection] = useState(true);
   const [favorites, setFavorites] = useState<number[]>([]);
   const [isFiltersVisible, SetIsFiltersVisible] = useState(false);
 
@@ -36,19 +37,22 @@ function TeacherList() {
     });
   }
 
-  async function hundleFilterSubmit() {
+  function hundleFilterSubmit() {
     loadFavorites();
 
-    const response = await api.get("classes", {
-      params: {
-        subject,
-        week_day,
-        time,
-      },
-    });
-
-    SetIsFiltersVisible(false);
-    setTeachers(response.data);
+    api
+      .get("classes", {
+        params: {
+          subject,
+          week_day,
+          time,
+        },
+      })
+      .then((response) => {
+        SetIsFiltersVisible(false);
+        setTeachers(response.data);
+      })
+      .catch(() => setIsConnection(false));
   }
 
   function hundleToggleFiltersVisible() {
@@ -142,15 +146,27 @@ function TeacherList() {
           paddingBottom: 16,
         }}
       >
-        {teachers.map((teacher: Teacher) => {
-          return (
-            <TeacherItem
-              key={teacher.id}
-              teacher={teacher}
-              favorited={favorites.includes(teacher.id)}
-            />
-          );
-        })}
+        {!isConnection ? (
+          <View style={styles.warningContainer}>
+            <Text style={styles.warning}>Erro ao obter os dados!!</Text>
+          </View>
+        ) : teachers.length === 0 ? (
+          <View style={styles.warningContainer}>
+            <Text style={styles.warning}>
+              Faça uma pesquisa válida para obter os resultados!
+            </Text>
+          </View>
+        ) : (
+          teachers.map((teacher: Teacher) => {
+            return (
+              <TeacherItem
+                key={teacher.id}
+                teacher={teacher}
+                favorited={favorites.includes(teacher.id)}
+              />
+            );
+          })
+        )}
       </ScrollView>
     </View>
   );
