@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 import { View, Image, Text, Linking } from "react-native";
 import { RectButton } from "react-native-gesture-handler";
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 import heartOutlineIcon from "../../assets/images/icons/heart-outline.png";
 import unFavoriteIcon from "../../assets/images/icons/unfavorite.png";
 import whatsappIcon from "../../assets/images/icons/whatsapp.png";
 
-import api from "../../services/api";
+import { api } from "../../services/api";
 
 import styles from "./styles";
 

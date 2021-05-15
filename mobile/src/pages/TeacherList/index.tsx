@@ -1,14 +1,14 @@
 import React, { useState } from "react";
 import { View, ScrollView, Text, TextInput, Picker } from "react-native";
 import { BorderlessButton, RectButton } from "react-native-gesture-handler";
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 import { Feather } from "@expo/vector-icons";
 
 import PageHeader from "../../components/PageHeader";
 import TeacherItem, { Teacher } from "../../components/TeacherItem";
 
-import api from "../../services/api";
+import { api } from "../../services/api";
 
 import styles from "./styles";
 
