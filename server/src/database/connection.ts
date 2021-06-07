@@ -6,7 +6,7 @@ const db = knex({
   connection: {
     filename: path.resolve(__dirname, "database.sqlite"),
   },
-  useNullAsDefault: true, // Se o valor não ser informado é preechido com Null no banco de dados
+  useNullAsDefault: true,
 });
 
 export { db };

@@ -88,7 +88,7 @@ function TeacherForm() {
               label="Nome completo"
               value={name}
               onChange={(e) => {
-                setName(e.target.value);
+                setName(e.target.value.trim());
               }}
               required
             />
@@ -97,7 +97,7 @@ function TeacherForm() {
               label="Avatar"
               value={avatar}
               onChange={(e) => {
-                setAvatar(e.target.value);
+                setAvatar(e.target.value.trim());
               }}
               required
             />
@@ -106,7 +106,7 @@ function TeacherForm() {
               label="WhatsApp"
               value={whatsapp}
               onChange={(e) => {
-                setWhatsapp(e.target.value);
+                setWhatsapp(e.target.value.trim());
               }}
               required
             />
@@ -115,7 +115,7 @@ function TeacherForm() {
               label="Biografia"
               value={bio}
               onChange={(e) => {
-                setBio(e.target.value);
+                setBio(e.target.value.trim());
               }}
               required
             />
@@ -128,7 +128,7 @@ function TeacherForm() {
               label="Matéria"
               value={subject}
               onChange={(e) => {
-                setSubject(e.target.value);
+                setSubject(e.target.value.trim());
               }}
               required
             />
@@ -137,7 +137,7 @@ function TeacherForm() {
               label="Custo da sua hora por aula"
               value={cost}
               onChange={(e) => {
-                setCost(e.target.value);
+                setCost(e.target.value.trim());
               }}
               required
             />
@@ -158,7 +158,11 @@ function TeacherForm() {
                     label="Dia da semana"
                     value={scheduleItem.week_day}
                     onChange={(e) =>
-                      setScheduleItemValue(index, "week_day", e.target.value)
+                      setScheduleItemValue(
+                        index,
+                        "week_day",
+                        e.target.value.trim()
+                      )
                     }
                     options={[
                       { value: "0", label: "Domingo" },
@@ -177,7 +181,7 @@ function TeacherForm() {
                     type="time"
                     value={scheduleItem.from}
                     onChange={(e) =>
-                      setScheduleItemValue(index, "from", e.target.value)
+                      setScheduleItemValue(index, "from", e.target.value.trim())
                     }
                     required
                   />
@@ -187,7 +191,7 @@ function TeacherForm() {
                     type="time"
                     value={scheduleItem.to}
                     onChange={(e) =>
-                      setScheduleItemValue(index, "to", e.target.value)
+                      setScheduleItemValue(index, "to", e.target.value.trim())
                     }
                     required
                   />
