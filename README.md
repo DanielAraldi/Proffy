@@ -1,5 +1,5 @@
 <h1 align="center">
-  <img alt="Proffy" src="./.github/logo.svg" height="100px" />
+  <img alt="Proffy Logo" src="./.github/logo.svg" height="100px" />
   <br>Next Level Week #2<br/>
   Node.js | ReactJS | React Native
 </h1>
@@ -18,7 +18,7 @@
 
 The **Proffy** is an application that connects students with teachers. This application offers the teachers an opportunity to create and administrate classes and add information, prices and hours about classes. The students can search and enter for classes registered by teachers.
 
-This aaplication was created during the **Next Level Week #2**, a project by [Rocketseat](https://rocketseat.com.br/).
+This aplication was created during the **Next Level Week #2**, a project by [Rocketseat](https://rocketseat.com.br/).
 
 ## :rocket: Technologies
 
