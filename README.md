@@ -1,36 +1,26 @@
 <h1 align="center">
-    <img alt="Proffy" src=".github/logo.svg" height="100px" />
-    <br>Next Level Week #2<br/>
-    Node.js | ReactJS | React Native
+  <img alt="Proffy" src="./.github/logo.svg" height="100px" />
+  <br>Next Level Week #2<br/>
+  Node.js | ReactJS | React Native
 </h1>
 
 <p align="center">
-    <img alt="GitHub top language" src="https://img.shields.io/github/languages/top/DanielAraldi/Proffy-NLW?style=flat-square">
-    <img alt="GitHub language count" src="https://img.shields.io/github/languages/count/DanielAraldi/Proffy-NLW?style=flat-square">
-    <img alt="GitHub" src="https://img.shields.io/github/license/DanielAraldi/Proffy-NLW?style=flat-square">
-    <img alt="Made by Rocketseat" src="https://img.shields.io/badge/made%20by-Rocketseat-%237519C1?style=flat-square"><br/>
+  <a href="#bookmark-about">About</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#rocket-technologies">Technologies</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#memo-license">License</a>
 </p>
 
 <p align="center">
-    <a href="#bookmark-sobre-o-projeto">Sobre</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-    <a href="#rocket-tecnologias-utilizadas">Tecnologias</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-    <a href="#boom-como-executar">Como Executar</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-    <a href="#memo-licença">Licença</a>
-</p>
-
-<p align="center">
-    <img alt="Design do Projeto" width="650px" src="./.github/design.png" />
+  <img alt="Project Design" width="640px" src="./.github/design.png" />
 <p>
 
-## :bookmark: Sobre o Projeto
+## :bookmark: About
 
-O **Proffy** é uma aplicação Web e Mobile feita para ajudar na conexão entre os alunos e os professores. Assim, esta aplicação oferece aos professores a possibilidade de criar e regular aulas, podendo colocar informações sobre as aulas, o custo e horário das aulas. Quanto aos alunos, possuem a possibilidade de buscar as aulas cadastradas.
+The **Proffy** is an application that connects students with teachers. This application offers the teachers an opportunity to create and administrate classes and add information, prices and hours about classes. The students can search and enter for classes registered by teachers.
 
-Este projeto foi idealizado pensando no dia **6 de agosto**, onde se comemora o **Dia Nacional dos Profissionais da Educação**, criado como forma de homenagear os professores.
+This aaplication was created during the **Next Level Week #2**, a project by [Rocketseat](https://rocketseat.com.br/).
 
-Essa aplicação foi realizada durante a **Next Level Week #2**, projeto da [Rocketseat](https://rocketseat.com.br/).
-
-## :rocket: Tecnologias Utilizadas
+## :rocket: Technologies
 
 - [Axios](https://axios-http.com/)
 - [Express](https://expressjs.com/)
@@ -42,53 +32,10 @@ Essa aplicação foi realizada durante a **Next Level Week #2**, projeto da [Roc
 - [TypeScript](https://www.typescriptlang.org/)
 - [SQLite](https://www.sqlite.org/)
 
-## :boom: Como Executar
+## :memo: License
 
-- ### **Pré-requisitos**
-
-  - É **necessário** possuir o **[Node.js](https://nodejs.org/en/)** instalado no computador
-  - É **necessário** possuir o **[Git](https://git-scm.com/)** instalado e configurado no computador
-  - Também, é **preciso** ter um gerenciador de pacotes seja o **[Yarn](https://yarnpkg.com/)** ou **[NPM](https://www.npmjs.com/)**.
-  - Por fim, é **essencial** ter o **[Expo](https://expo.io/)** instalado de forma global na máquina
-
-1. Faça um clone do repositório:
-
-```sh
-  $ git clone https://github.com/DanielAraldi/Proffy-NLW.git
-```
-
-2. Executando a Aplicação:
-
-```sh
-  # API
-  $ cd server
-  # Instalando as dependências do projeto.
-  $ npm install # ou yarn install
-
-  # CONFIGURANDO O BANCO DE DADOS E A CRIAÇÃO DE TABELAS.
-  $ npm run knex:migrate # ou yarn knex:migrate
-  # Inicie a API
-  $ npm run start # ou yarn start
-
-  # APLICAÇÃO WEB
-  $ cd web
-  # Instalando as dependências do projeto.
-  $ npm install # ou yarn install
-  # Inicie a aplicação web
-  $ npm run start # ou yarn start
-
-  # APLICAÇÃO MOBILE
-  $ cd mobile
-  # Instalando as dependências do projeto.
-  $ yarn install # ou npm install
-  # Inicie a aplicação mobile
-  $ yarn start # ou npm run start
-```
-
-## :memo: Licença
-
-Esse projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para mais detalhes.
+This project is under [MIT license](./LICENSE). Read file for more details.
 
 ---
 
-<sup>Projeto desenvolvido com a tutoria de [Diego Fernandes](https://github.com/diego3g), da [Rocketseat](https://rocketseat.com.br/).</sup>
+<sup>Project developed with the tutoring of [Diego Fernandes](https://github.com/diego3g) from [Rocketseat](https://rocketseat.com.br/).</sup>
